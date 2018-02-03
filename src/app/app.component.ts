@@ -11,6 +11,8 @@ import { GamePage } from '../pages/pages'
 import { TeamDetailPage } from '../pages/pages'
 import { TournamentsPage} from '../pages/pages'
 import { TeamsPage } from '../pages/pages'
+import { TeamHomePage } from '../pages/pages'
+import { StandingsPage } from '../pages/pages'
 
 @Component({
   templateUrl: 'app.html'
@@ -42,9 +44,17 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+  // openPage(page) {
+  //   // Reset the content nav to have just this page
+  //   // we wouldn't want the back button to show in this scenario
+  //   this.nav.setRoot(page.component);
+  // }
+
+  goHome() {
+    this.nav.push(MyTeamsPage);
+  }
+
+  goToTournaments() {
+    this.nav.push(TournamentsPage);
   }
 }
