@@ -36,6 +36,10 @@ export class StandingsPage {
         .toPairs()
         .map(item => _.zipObject(['divisionName','divisionStandings'], item))
         .value();
+
+    console.log('**allStandings', this.allStandings);
+    console.log('**team', this.team);
+    
   }
 
 }
