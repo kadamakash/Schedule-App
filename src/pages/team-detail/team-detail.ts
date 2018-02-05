@@ -20,8 +20,9 @@ import * as _ from 'lodash';
 })
 export class TeamDetailPage {
 
-  team: any;
+  private team: any;
   games: any[];
+  teamStandings: any;
   private tourneyData: any;
 
   constructor(private nav: NavController, private navParams: NavParams, private eliteApi: EliteApi) {}
@@ -33,9 +34,7 @@ export class TeamDetailPage {
     this.games = _.chain(this.tourneyData.games)
                   .filter(g => g.team1Id === this.team.id || g.team2Id === this.team.id)
                   .map(g => {
-                    console.log("#g", g);
-                    let isTeam1 = (g.team1Id === this.team.id);
-                    console.log(isTeam1);
+                    let isTeam1 = (g.team1Id === this.team.id);                 
                     let opponentName = isTeam1 ? g.team2 : g.team1;
                     let scoreDisplay = this.getScoreDisplay(isTeam1, g.team1Score, g.team2Score);
                     return{
@@ -49,6 +48,7 @@ export class TeamDetailPage {
                     }; 
                   })
                   .value();
+    this.teamStandings = _.find(this.tourneyData.standings, {'teamId': this.team.id});
   }
 
   getScoreDisplay(isTeam1, team1Score, team2Score) {
